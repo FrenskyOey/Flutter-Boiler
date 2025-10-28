@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 extension CollectionSafetyExtensions<T> on Iterable<T>? {
   /// Checks if the iterable is null or empty.
   bool get isNullOrEmpty {
@@ -26,7 +28,7 @@ extension IterableUtilityExtensions<T> on Iterable<T> {
   }) {
     final list = <Widget>[];
     final items = this.toList();
-    
+
     for (int i = 0; i < items.length; i++) {
       list.add(builder(items[i]));
       // Add separator after every item except the last one
@@ -41,7 +43,7 @@ extension IterableUtilityExtensions<T> on Iterable<T> {
   List<Widget> toWidgetList(Widget Function(T item) builder) {
     return map(builder).toList();
   }
-  
+
   /// Attempts to get the element at the given [index], returning null if the index is out of bounds.
   T? safeElementAt(int index) {
     if (index >= 0 && index < length) {
@@ -66,3 +68,4 @@ Column(
     builder: (item) => Text('Item: $item'),
   ),
 );
+*/

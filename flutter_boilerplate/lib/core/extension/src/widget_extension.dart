@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 /// Extension methods on [Widget] to provide common styling, spacing,
 /// and interaction wrappers without deeply nested code.
 extension WidgetExtensions on Widget {

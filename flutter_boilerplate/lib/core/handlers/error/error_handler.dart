@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_boilerplate/core/handlers/log/log_helper.dart';
 
-import 'src/index.dart';
+import 'index.dart';
 
 abstract class BaseErrorHandler {
   String handleError(dynamic error, [StackTrace? stackTrace]);

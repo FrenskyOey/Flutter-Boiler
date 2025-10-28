@@ -9,7 +9,7 @@ class LoggerAdapter implements BaseLog {
   LoggerAdapter()
     : _logger = Logger(
         printer: PrettyPrinter(
-          methodCount: 2,
+          methodCount: 0,
           errorMethodCount: 8,
           lineLength: 120,
           colors: true,

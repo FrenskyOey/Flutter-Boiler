@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/configs/routes/route_names.dart';
+import 'package:flutter_boilerplate/core/extension/index.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,11 +24,7 @@ class SplashScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.food_bank,
-              size: 80,
-              color: Theme.of(context).colorScheme.primary,
-            ),
+            Icon(Icons.food_bank, size: 80, color: context.primary),
             const SizedBox(height: 40),
             const CircularProgressIndicator(),
           ],
