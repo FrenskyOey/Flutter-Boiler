@@ -17,6 +17,18 @@ class AppText {
       fontWeight: FontWeight.bold,
       color: AppColor.textPrimary(),
     ),
+    displayLarge: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColor.textPrimary(),
+    ),
+    displayMedium: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColor.textPrimary(),
+    ),
+    displaySmall: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColor.textPrimary(),
+    ),
     titleLarge: TextStyle(
       fontWeight: FontWeight.bold,
       color: AppColor.textPrimary(),
@@ -51,6 +63,10 @@ class AppText {
       fontWeight: FontWeight.w300,
       color: AppColor.textSecondary(),
     ),
+    labelMedium: TextStyle(
+      fontWeight: FontWeight.w300,
+      color: AppColor.textSecondary(),
+    ),
   );
 
   static final darkTextTheme = GoogleFonts.epilogueTextTheme().copyWith(
@@ -63,6 +79,18 @@ class AppText {
       color: AppColor.textPrimary(isDarkMode: true),
     ),
     headlineSmall: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColor.textPrimary(isDarkMode: true),
+    ),
+    displayLarge: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColor.textPrimary(isDarkMode: true),
+    ),
+    displayMedium: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColor.textPrimary(isDarkMode: true),
+    ),
+    displaySmall: TextStyle(
       fontWeight: FontWeight.bold,
       color: AppColor.textPrimary(isDarkMode: true),
     ),
@@ -93,6 +121,10 @@ class AppText {
     ),
     // CAPTION: Light and Primary Color
     labelSmall: TextStyle(
+      fontWeight: FontWeight.w300,
+      color: AppColor.textSecondary(isDarkMode: true),
+    ),
+    labelMedium: TextStyle(
       fontWeight: FontWeight.w300,
       color: AppColor.textSecondary(isDarkMode: true),
     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/configs/flavors_config.dart';
+import 'package:flutter_boilerplate/core/configs/routes/router.dart';
+import 'package:flutter_boilerplate/core/themes/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -22,16 +24,18 @@ void mainCommon(FlavorConfig config) async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Boiler Plate',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Center(child: const Text('This is Demo Page')),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routeProvider);
+    return MaterialApp.router(
+      title: 'App Showcase',
+      darkTheme: AppTheme.dark,
+      theme: AppTheme.light,
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }

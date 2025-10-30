@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/configs/routes/route_names.dart';
+import 'package:flutter_boilerplate/features/demo/presentation/screen/design_screen.dart';
+import 'package:flutter_boilerplate/features/demo/presentation/screen/intro_screen.dart';
 import 'package:flutter_boilerplate/features/not_found_screen.dart';
 import 'package:flutter_boilerplate/features/onboarding/presentation/screens/demo_screen.dart';
-import 'package:flutter_boilerplate/features/onboarding/presentation/screens/intro/intro_screen.dart';
 import 'package:flutter_boilerplate/features/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -39,6 +40,11 @@ final routeProvider = Provider((ref) {
         name: RouteNames.demo,
         path: "/demo",
         builder: (context, state) => const DemoScreen(),
+      ),
+      GoRoute(
+        name: RouteNames.design,
+        path: "/design",
+        builder: (context, state) => const DesignScreen(),
       ),
     ],
   );

@@ -11,7 +11,7 @@ class AppColor {
   /// Returns the primary background color based on the mode.
   static Color background({bool isDarkMode = false}) {
     // True Black for Dark, Very Light Gray for Light
-    return isDarkMode ? Colors.black : const Color(0xFFF4F4F4);
+    return isDarkMode ? Colors.black : const Color(0xFFFFFFFF);
   }
 
   /// Returns the primary surface color (e.g., card, AppBar) based on the mode.
@@ -27,12 +27,12 @@ class AppColor {
 
   /// Returns the primary text color based on the mode.
   static Color textSecondary({bool isDarkMode = false}) {
-    return isDarkMode ? primary : secondary;
+    return isDarkMode ? Colors.grey.shade200 : secondary;
   }
 
   /// Returns the input field fill color based on the mode.
   static Color inputFill({bool isDarkMode = false}) {
-    return isDarkMode ? const Color(0xFF2C2C2E) : const Color(0xFFE5E5EA);
+    return isDarkMode ? const Color(0xFF2C2C2E) : surface();
   }
 
   static Color disabledColor({bool isDarkMode = false}) {

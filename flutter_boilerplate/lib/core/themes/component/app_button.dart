@@ -36,6 +36,8 @@ final elevatedButton = ElevatedButtonThemeData(
 final fillButton = FilledButtonThemeData(
   style:
       FilledButton.styleFrom(
+        backgroundColor: AppColor.secondary,
+        foregroundColor: AppColor.surface(),
         disabledBackgroundColor: AppColor.disabledColor(),
         disabledForegroundColor: Colors.white,
       ).copyWith(
@@ -69,8 +71,3 @@ final textButton = TextButtonThemeData(
     disabledForegroundColor: AppColor.disabledColor(),
   ).copyWith(padding: buttonStyles.padding, textStyle: buttonStyles.textStyle),
 );
-
-
-
-
-

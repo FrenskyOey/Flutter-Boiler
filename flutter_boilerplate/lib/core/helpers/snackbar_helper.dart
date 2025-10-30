@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/extension/index.dart';
+import 'package:flutter_boilerplate/core/helpers/animated_component.dart';
 import 'package:flutter_boilerplate/core/themes/dimens_constant.dart';
 
 /// Defines the possible states (types) for the custom SnackBar.
@@ -17,77 +18,81 @@ class SnackBarHelper {
     }
   }
 
+  static Widget _snackbarContent(
+    BuildContext context,
+    SnackBarState state,
+    String subtitle,
+    VoidCallback? onPressed,
+  ) {
+    final details = _getStateDetails(state);
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: Dimens.ms,
+        horizontal: Dimens.sm,
+      ),
+      decoration: BoxDecoration(
+        color: details.color,
+        borderRadius: BorderRadius.circular(
+          Dimens.borderRadius,
+        ), // Rounded corners for aesthetics
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  details.title,
+                  style: context.titleSmall!.copyWith(color: Colors.white),
+                ),
+                Dimens.xs.verticalSpace,
+                Text(
+                  subtitle,
+                  style: context.bodyMedium!.copyWith(color: Colors.white),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          Dimens.sm.horizontalSpace,
+          IconButton(
+            icon: const Icon(Icons.close, color: Colors.white, size: 20),
+            onPressed: onPressed,
+            tooltip: 'Dismiss',
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// The core method responsible for displaying the custom SnackBar UI.
   static void _showCustomSnackBar(
     BuildContext context,
     SnackBarState state,
     String subtitle,
   ) {
-    final details = _getStateDetails(state);
     final messenger = ScaffoldMessenger.of(context);
 
     messenger.hideCurrentSnackBar();
 
+    final snackbarContents = _snackbarContent(context, state, subtitle, () {
+      messenger.hideCurrentSnackBar();
+    });
+
     final customSnackBar = SnackBar(
       duration: const Duration(seconds: 4),
       behavior: SnackBarBehavior.floating,
-      elevation: 6,
-      margin: const EdgeInsets.all(Dimens.md),
+      elevation: 0,
+      margin: const EdgeInsets.all(Dimens.xs),
       backgroundColor:
           Colors.transparent, // Set to transparent to use custom content color
-      content: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: Dimens.ms,
-          horizontal: Dimens.sm,
-        ),
-        decoration: BoxDecoration(
-          color: details.color,
-          borderRadius: BorderRadius.circular(
-            Dimens.borderRadius,
-          ), // Rounded corners for aesthetics
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10,
-              offset: Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    details.title,
-                    style: context.titleSmall!.copyWith(color: Colors.white),
-                  ),
-                  Dimens.xs.verticalSpace,
-                  Text(
-                    subtitle,
-                    style: context.bodyMedium!.copyWith(color: Colors.white),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            Dimens.sm.horizontalSpace,
-            IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 20),
-              onPressed: () {
-                messenger.hideCurrentSnackBar();
-              },
-              tooltip: 'Dismiss',
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
-            ),
-          ],
-        ),
-      ),
+      content: AnimatedSnackBarContent(child: snackbarContents),
     );
 
     messenger.showSnackBar(customSnackBar);

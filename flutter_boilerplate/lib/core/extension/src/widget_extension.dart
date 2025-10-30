@@ -37,14 +37,27 @@ extension WidgetExtensions on Widget {
 
   /// Wraps the widget in [Padding] with symmetrical horizontal padding.
   Widget paddingHorizontal(double value) {
-    return Padding(padding: EdgeInsets.symmetric(horizontal: value), child: this);
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: value),
+      child: this,
+    );
   }
 
   /// Wraps the widget in [Padding] with symmetrical vertical padding.
   Widget paddingVertical(double value) {
-    return Padding(padding: EdgeInsets.symmetric(vertical: value), child: this);
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: value),
+      child: this,
+    );
   }
-  
+
+  Widget paddingBoth(double vertical, double horizontal) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+      child: this,
+    );
+  }
+
   /// Wraps the widget in [Padding] using [EdgeInsets.only].
   Widget paddingOnly({
     double left = 0.0,
@@ -67,10 +80,7 @@ extension WidgetExtensions on Widget {
 
   /// Wraps the widget in a [GestureDetector] for a quick tap handler.
   Widget onTap(VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: this,
-    );
+    return GestureDetector(onTap: onTap, child: this);
   }
 }
 

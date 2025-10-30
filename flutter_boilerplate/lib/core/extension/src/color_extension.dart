@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/core/themes/app_color.dart';
 
 /// Extension methods on BuildContext to easily access Theme data.
 ///
@@ -41,6 +42,11 @@ extension ColorExtensions on BuildContext {
 
   /// High-emphasis color for text and icons over error color.
   Color get onError => colorScheme.onError;
+
+  /// High-emphasis color for text and icons over background color.
+  Color get textPrimary => AppColor.textPrimary();
+
+  Color get textSecondary => AppColor.textSecondary();
 }
 
 // Example of how you would use this extension:

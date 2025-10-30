@@ -24,8 +24,8 @@ class SplashScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.food_bank, size: 80, color: context.primary),
-            const SizedBox(height: 40),
+            Icon(Icons.gamepad, size: 80, color: context.primary),
+            40.space,
             const CircularProgressIndicator(),
           ],
         ),

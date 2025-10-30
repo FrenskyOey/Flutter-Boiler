@@ -30,9 +30,12 @@ dependencies:
   flutter_dotenv: ^6.0.0
   stack_trace: ^1.12.1
   logger: ^2.6.2
-  chucker_flutter: ^1.8.5
+  chucker_flutter:
+    git:
+      url: https://github.com/MamikonP/chucker-flutter.git
   device_info_plus: ^12.2.0
   package_info_plus: ^9.0.0
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

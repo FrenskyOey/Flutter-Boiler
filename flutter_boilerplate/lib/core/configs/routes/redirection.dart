@@ -4,7 +4,7 @@ FutureOr<String?> handleRedirect(
   BuildContext context,
   GoRouterState state,
   Ref ref,
-) {
+) async {
   final isSplashScreen = state.matchedLocation == RouteNames.splash;
   final isIntro = state.matchedLocation == RouteNames.intro;
 
@@ -13,22 +13,18 @@ FutureOr<String?> handleRedirect(
     return null;
   }
 
-  /*// this will check, if user is not authenticate anymore, will redirect to login page
-    // check if the user is logged in or not
-    final isAuthenticated = _isAuthenticated(ref);
-    if (!isAuthenticated) {
-      return RouteNames.login;
-    }
-  */
+  /*final isAuthenticated = await _isAuthenticated(ref);
+  if (!isAuthenticated) {
+    return RouteNames.intro;
+  }*/
+
   return null;
 }
 
 /*
-bool _isAuthenticated(Ref<Object?> ref) {
-  final user = ref.read(authNotifierProvider).maybeWhen(
-        success: (user) => user,
-        orElse: () => null,
-      );
-  return user != null;
-}
-*/
+Future<bool> _isAuthenticated(Ref ref) async {
+  final sharedDataSources = await ref.read(shareLocalDataSourceProvider.future);
+  final tokens = sharedDataSources.authToken();
+
+  return tokens.isNotNullOrEmpty;
+}*/

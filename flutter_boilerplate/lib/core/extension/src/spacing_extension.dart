@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 /// Extension methods on [num] (int or double) to quickly create
 /// [SizedBox] widgets for spacing and padding.
@@ -13,7 +14,11 @@ extension SpacingExtensions on num {
   /// Example: `8.horizontalSpace` creates `SizedBox(width: 8.0)`
   SizedBox get horizontalSpace => SizedBox(width: toDouble());
 
+  /// Example: `8.allSpace` creates `SizedBox(width: 8.0)`
+  SizedBox get allSpace => SizedBox(width: toDouble(), height: toDouble());
+
   // --- Shorthands for cleaner syntax ---
+  Gap get space => Gap(toDouble());
 
   /// Shorthand for [verticalSpace].
   SizedBox get vSpace => verticalSpace;
@@ -21,32 +26,6 @@ extension SpacingExtensions on num {
   /// Shorthand for [horizontalSpace].
   SizedBox get hSpace => horizontalSpace;
 
-  // --- Widget extensions for symmetrical padding ---
-
-  /// Wraps a widget with symmetrical vertical padding defined by the number.
-  ///
-  /// Example: `16.vPadding(myWidget)` adds 16.0 vertical padding.
-  Widget vPadding(Widget child) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: toDouble()),
-      child: child,
-    );
-  }
-
-  /// Wraps a widget with symmetrical horizontal padding defined by the number.
-  ///
-  /// Example: `8.hPadding(myWidget)` adds 8.0 horizontal padding.
-  Widget hPadding(Widget child) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: toDouble()),
-      child: child,
-    );
-  }
-
-  /// Wraps a widget with padding on all sides defined by the number.
-  ///
-  /// Example: `20.allPadding(myWidget)` adds 20.0 padding on all sides.
-  Widget allPadding(Widget child) {
-    return Padding(padding: EdgeInsets.all(toDouble()), child: child);
-  }
+  /// Shorthand for [allSpace].
+  SizedBox get aSpace => allSpace;
 }
