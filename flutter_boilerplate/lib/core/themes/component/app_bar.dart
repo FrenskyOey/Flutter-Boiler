@@ -12,12 +12,12 @@ final appBarLight = AppBarTheme(
   toolbarHeight: 56.0,
   toolbarTextStyle: AppText.baseTextTheme.titleMedium!.copyWith(
     fontSize: 18.0,
-    color: AppColor.textPrimary(isDarkMode: true),
+    color: AppColor.textPrimary(),
     fontWeight: FontWeight.w600,
   ),
   titleTextStyle: AppText.baseTextTheme.titleMedium!.copyWith(
     fontSize: 18.0,
-    color: AppColor.textPrimary(isDarkMode: true),
+    color: AppColor.textPrimary(),
     fontWeight: FontWeight.w600,
   ),
   // icons button theme

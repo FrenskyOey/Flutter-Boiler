@@ -4,11 +4,13 @@ import 'package:flutter_boilerplate/core/helpers/animated_component.dart';
 import 'package:flutter_boilerplate/core/themes/dimens_constant.dart';
 
 /// Defines the possible states (types) for the custom SnackBar.
-enum SnackBarState { Success, Warning, Error }
+enum SnackBarState { Default, Success, Warning, Error }
 
 class SnackBarHelper {
   static ({String title, Color color}) _getStateDetails(SnackBarState state) {
     switch (state) {
+      case SnackBarState.Default:
+        return (title: "", color: Colors.black);
       case SnackBarState.Success:
         return (title: "Success", color: Colors.green.shade700);
       case SnackBarState.Warning:
@@ -21,6 +23,7 @@ class SnackBarHelper {
   static Widget _snackbarContent(
     BuildContext context,
     SnackBarState state,
+    String? title,
     String subtitle,
     VoidCallback? onPressed,
   ) {
@@ -45,7 +48,7 @@ class SnackBarHelper {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  details.title,
+                  title ?? details.title,
                   style: context.titleSmall!.copyWith(color: Colors.white),
                 ),
                 Dimens.xs.verticalSpace,
@@ -71,28 +74,41 @@ class SnackBarHelper {
     );
   }
 
+  static void hideSnakcBar(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  }
+
   /// The core method responsible for displaying the custom SnackBar UI.
   static void _showCustomSnackBar(
     BuildContext context,
     SnackBarState state,
-    String subtitle,
-  ) {
+    String subtitle, [
+    String? title,
+  ]) {
     final messenger = ScaffoldMessenger.of(context);
 
     messenger.hideCurrentSnackBar();
 
-    final snackbarContents = _snackbarContent(context, state, subtitle, () {
-      messenger.hideCurrentSnackBar();
-    });
+    final snackbarContents = _snackbarContent(
+      context,
+      state,
+      title,
+      subtitle,
+      () {
+        messenger.hideCurrentSnackBar();
+      },
+    );
 
     final customSnackBar = SnackBar(
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       behavior: SnackBarBehavior.floating,
       elevation: 0,
       margin: const EdgeInsets.all(Dimens.xs),
+      dismissDirection: DismissDirection.down,
       backgroundColor:
           Colors.transparent, // Set to transparent to use custom content color
-      content: AnimatedSnackBarContent(child: snackbarContents),
+      //content: AnimatedSnackBarContent(child: snackbarContents),
+      content: snackbarContents,
     );
 
     messenger.showSnackBar(customSnackBar);
@@ -103,10 +119,10 @@ class SnackBarHelper {
   /// Generic method to show a SnackBar with a specified state.
   static void showSnackBar(
     BuildContext context,
-    SnackBarState state,
+    String title,
     String subtitle,
   ) {
-    _showCustomSnackBar(context, state, subtitle);
+    _showCustomSnackBar(context, SnackBarState.Default, subtitle, title);
   }
 
   /// Convenience method to show a Success SnackBar (Green).

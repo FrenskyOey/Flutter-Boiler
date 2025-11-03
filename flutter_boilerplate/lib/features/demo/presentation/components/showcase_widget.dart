@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/extension/index.dart';
 import 'package:flutter_boilerplate/core/themes/dimens_constant.dart';
-import 'package:flutter_boilerplate/features/demo/presentation/model/showcase_item.dart';
+import 'package:flutter_boilerplate/features/demo/presentation/models/showcase_item.dart';
 
 class ShowcaseWidget extends StatelessWidget {
   final ShowcaseItem item;

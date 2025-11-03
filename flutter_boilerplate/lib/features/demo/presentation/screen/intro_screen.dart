@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/configs/routes/route_names.dart';
 import 'package:flutter_boilerplate/core/helpers/snackbar_helper.dart';
-import 'package:flutter_boilerplate/features/demo/presentation/component/showcase_widget.dart';
-import 'package:flutter_boilerplate/features/demo/presentation/model/showcase_item.dart';
+import 'package:flutter_boilerplate/features/demo/presentation/components/showcase_widget.dart';
+import 'package:flutter_boilerplate/features/demo/presentation/models/showcase_item.dart';
 import 'package:go_router/go_router.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -20,6 +20,11 @@ class IntroScreen extends StatelessWidget {
       subtitle: 'Demonstrate snackbar, dialog, and toast mecanism',
     ),
     ShowcaseItem(
+      icon: Icons.developer_mode,
+      title: 'Widget Demo',
+      subtitle: 'Demonstrate custom widget component',
+    ),
+    ShowcaseItem(
       icon: Icons.toys,
       title: 'Api Demo',
       subtitle: 'Integrating simple API demo',
@@ -34,11 +39,15 @@ class IntroScreen extends StatelessWidget {
         }
       case 1:
         {
-          SnackBarHelper.showError(context, "Feature is Not Ready Yet");
+          context.pushNamed(RouteNames.helper);
         }
       case 2:
         {
           SnackBarHelper.showError(context, "Feature is Not Ready Yet");
+        }
+      case 3:
+        {
+          context.pushNamed(RouteNames.apiDemo);
         }
       case _:
         {

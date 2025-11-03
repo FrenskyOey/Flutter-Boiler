@@ -33,6 +33,7 @@ class MyApp extends ConsumerWidget {
       title: 'App Showcase',
       darkTheme: AppTheme.dark,
       theme: AppTheme.light,
+
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,

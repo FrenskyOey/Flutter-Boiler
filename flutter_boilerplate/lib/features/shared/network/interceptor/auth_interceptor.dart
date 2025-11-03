@@ -5,7 +5,6 @@ import 'package:flutter_boilerplate/features/shared/data/models/device_config.da
 /// A Dio Interceptor that adds Auth token and Device/App info to request headers.
 class AuthInterceptor extends Interceptor {
   final ShareLocalDataSource dataSource;
-
   AuthInterceptor({required this.dataSource});
 
   @override

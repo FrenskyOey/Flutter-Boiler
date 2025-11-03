@@ -10,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'shared_local_ds.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<ShareLocalDataSource> shareLocalDataSource(Ref ref) async {
   final pref = await ref.read(sharedPreferencesProvider.future);
   return SharedLocalDataSourceImpl(prefs: pref);

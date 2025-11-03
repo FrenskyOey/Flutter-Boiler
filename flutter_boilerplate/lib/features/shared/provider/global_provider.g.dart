@@ -21,7 +21,7 @@ final class DioProvider
         argument: null,
         retry: null,
         name: r'dioProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -40,7 +40,7 @@ final class DioProvider
   }
 }
 
-String _$dioHash() => r'824df4082d0fb2c1f14d03e70880ea3f4b829c5b';
+String _$dioHash() => r'ea7729addc91c59bdfdb74430acca31fcf8893af';
 
 @ProviderFor(sharedPreferences)
 const sharedPreferencesProvider = SharedPreferencesProvider._();
@@ -61,7 +61,7 @@ final class SharedPreferencesProvider
         argument: null,
         retry: null,
         name: r'sharedPreferencesProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -81,7 +81,7 @@ final class SharedPreferencesProvider
   }
 }
 
-String _$sharedPreferencesHash() => r'03488f1d067839fd0bf9537d08bd5a8bdafad55a';
+String _$sharedPreferencesHash() => r'81810a4beeb401f8e1cee5a71a1ee58d902aa05c';
 
 @ProviderFor(isar)
 const isarProvider = IsarProvider._();
@@ -95,7 +95,7 @@ final class IsarProvider
         argument: null,
         retry: null,
         name: r'isarProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -114,4 +114,4 @@ final class IsarProvider
   }
 }
 
-String _$isarHash() => r'2769fe00a74d8dcc5740a379be75d4fcd09cdc30';
+String _$isarHash() => r'0086bc8b8d29f6d725d9c0168db294bdc9e00a01';

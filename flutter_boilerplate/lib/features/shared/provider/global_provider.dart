@@ -15,13 +15,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'global_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<Dio> dio(Ref ref) async {
   final flavorConfig = ref.read(flavorConfigProvider);
-  final dataSource = await ref.read(shareLocalDataSourceProvider.future);
+  final ShareLocalDataSource dataSource = await ref.watch(
+    shareLocalDataSourceProvider.future,
+  );
 
   final authInterceptor = AuthInterceptor(dataSource: dataSource);
-
   final chuckerInterceptor = ChuckerDioInterceptor();
   final logInterceptor = LogInterceptor(
     requestBody: true,
@@ -67,13 +68,13 @@ Future<Dio> dio(Ref ref) async {
   return dio;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<SharedPreferences> sharedPreferences(Ref ref) async {
   final shared = await SharedPreferences.getInstance();
   return shared;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<Isar> isar(Ref ref) async {
   final directory = await getApplicationDocumentsDirectory();
   Isar isar = await Isar.open(

@@ -28,7 +28,7 @@ final class ShareLocalDataSourceProvider
         argument: null,
         retry: null,
         name: r'shareLocalDataSourceProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -49,4 +49,4 @@ final class ShareLocalDataSourceProvider
 }
 
 String _$shareLocalDataSourceHash() =>
-    r'd3ba3e5d1a510a9ffd6016597b50061720089412';
+    r'01b9cfe6235acd4d96848898d301b6b88c0e5bc2';

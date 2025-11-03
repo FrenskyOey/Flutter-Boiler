@@ -5,6 +5,7 @@ FutureOr<String?> handleRedirect(
   GoRouterState state,
   Ref ref,
 ) async {
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
   final isSplashScreen = state.matchedLocation == RouteNames.splash;
   final isIntro = state.matchedLocation == RouteNames.intro;
 

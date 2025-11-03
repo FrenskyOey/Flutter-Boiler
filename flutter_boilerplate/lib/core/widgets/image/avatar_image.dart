@@ -10,7 +10,6 @@ class AvatarImage extends StatelessWidget {
   final String? src;
   final String? name;
   final AvatarSize size;
-  final Color borderColor;
   final double borderWidth;
 
   const AvatarImage({
@@ -18,7 +17,6 @@ class AvatarImage extends StatelessWidget {
     this.src,
     this.name,
     this.size = AvatarSize.medium,
-    this.borderColor = AppColor.secondary,
     this.borderWidth = 2.0,
   });
 
@@ -127,7 +125,7 @@ class AvatarImage extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         shape: BoxShape.circle,
-        border: Border.all(color: borderColor, width: borderWidth),
+        border: Border.all(color: backgroundColor, width: borderWidth),
       ),
       child: ClipOval(child: Center(child: childWidget)),
     );

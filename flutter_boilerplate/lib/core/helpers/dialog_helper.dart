@@ -12,7 +12,32 @@ class DialogHelper {
     required String title,
     required String content,
     String primaryButtonText = "Confirm",
+    bool hideCloseBtn = false,
+    required ValueChanged<DialogButtonType> onButtonPress,
+  }) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return _CustomDialog(
+          title: title,
+          content: content,
+          primaryButtonText: primaryButtonText,
+          secondaryButtonText: null,
+          hideCloseBtn: hideCloseBtn,
+          onButtonPress: onButtonPress,
+        );
+      },
+    );
+  }
+
+  static showConfirmation({
+    required BuildContext context,
+    required String title,
+    required String content,
+    String primaryButtonText = "Confirm",
     String? secondaryButtonText = "Cancel",
+    bool hideCloseBtn = false,
     required ValueChanged<DialogButtonType> onButtonPress,
   }) {
     showDialog(
@@ -24,6 +49,7 @@ class DialogHelper {
           content: content,
           primaryButtonText: primaryButtonText,
           secondaryButtonText: secondaryButtonText,
+          hideCloseBtn: hideCloseBtn,
           onButtonPress: onButtonPress,
         );
       },
@@ -37,6 +63,7 @@ class _CustomDialog extends StatelessWidget {
   final String content;
   final String primaryButtonText;
   final String? secondaryButtonText;
+  final bool hideCloseBtn;
   final ValueChanged<DialogButtonType> onButtonPress;
 
   const _CustomDialog({
@@ -44,11 +71,12 @@ class _CustomDialog extends StatelessWidget {
     required this.content,
     required this.primaryButtonText,
     required this.secondaryButtonText,
+    required this.hideCloseBtn,
     required this.onButtonPress,
   });
 
   // Defining the brand color based on the image (deep red/maroon)
-  static const Color _primaryColor = AppColor.secondary;
+  static const Color _primaryColor = AppColor.primary;
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +95,9 @@ class _CustomDialog extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 400),
           padding: const EdgeInsets.fromLTRB(
             Dimens.lg,
+            Dimens.md,
             Dimens.lg,
-            Dimens.lg,
-            Dimens.sm,
+            Dimens.md,
           ), // Internal padding
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -82,35 +110,37 @@ class _CustomDialog extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: context.headlineSmall),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(title, style: context.headlineSmall),
+                          if (hideCloseBtn == false)
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              borderRadius: BorderRadius.circular(Dimens.lg),
+                              child: const Padding(
+                                padding: EdgeInsets.all(Dimens.xs),
+                                child: Icon(
+                                  Icons.close_outlined,
+                                  color: _primaryColor,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+
                       // Separator line (matches image style)
                       Container(
                         margin: const EdgeInsets.only(top: 10, bottom: 15),
                         height: 1.0,
                         width: double.infinity,
-                        color: AppColor.tertiary,
+                        color: _primaryColor,
                       ),
                     ],
                   ).paddingVertical(Dimens.sm),
-                  // Close Icon Button (Positioned in top right)
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      borderRadius: BorderRadius.circular(Dimens.lg),
-                      child: const Padding(
-                        padding: EdgeInsets.all(Dimens.xs),
-                        child: Icon(
-                          Icons.close,
-                          color: _primaryColor,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
 
@@ -118,7 +148,7 @@ class _CustomDialog extends StatelessWidget {
               Flexible(
                 child: Text(
                   content,
-                  style: context.bodyLarge?.copyWith(
+                  style: context.bodyMedium?.copyWith(
                     color: Colors.grey.shade700,
                     height: 1.5,
                   ),
@@ -131,27 +161,45 @@ class _CustomDialog extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (secondaryButtonText != null)
+                  if (secondaryButtonText != null) ...[
                     // Secondary Button (Left/CANCEL): Outlined style
-                    OutlinedButton(
-                      onPressed: () {
-                        onButtonPress(DialogButtonType.secondary);
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        secondaryButtonText!.toUpperCase(),
-                        style: context.titleMedium,
+                    Expanded(
+                      child: SizedBox(
+                        height: 44,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            onButtonPress(DialogButtonType.secondary);
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            secondaryButtonText!,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
+                    Dimens.md.space,
+                  ],
                   // Primary Button (Right/OK): Filled style
-                  ElevatedButton(
-                    onPressed: () {
-                      onButtonPress(DialogButtonType.primary);
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      primaryButtonText.toUpperCase(),
-                      style: context.titleMedium,
+                  Expanded(
+                    child: SizedBox(
+                      height: 44,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          onButtonPress(DialogButtonType.primary);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          primaryButtonText,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
