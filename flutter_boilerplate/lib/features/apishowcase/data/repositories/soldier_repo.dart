@@ -20,9 +20,10 @@ class SoldieRepositoryImp implements SoldierRepository {
       int avatarIndexes = currentSize;
       final List<Soldier> result = [];
       for (final datas in responseSoldier) {
-        final entity = datas.toDomain().copyWith(
+        /*final entity = datas.toDomain().copyWith(
           avatar: "https://randomuser.me/api/portraits/men/$avatarIndexes.jpg",
-        );
+        );*/
+        final entity = datas.toDomain();
         avatarIndexes = avatarIndexes + 1;
         result.add(entity);
       }

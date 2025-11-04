@@ -41,7 +41,7 @@ final class SoldierEventProvider
   }
 }
 
-String _$soldierEventHash() => r'c4cb5883548b1238531b9b2ad9015c04566db7df';
+String _$soldierEventHash() => r'b4613173caf58e302b6430d9e9ffb0aaed3fa281';
 
 abstract class _$SoldierEvent extends $Notifier<SoldierEventState?> {
   SoldierEventState? build();

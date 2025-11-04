@@ -33,7 +33,7 @@ final class SoldierControllerProvider
   SoldierController create() => SoldierController();
 }
 
-String _$soldierControllerHash() => r'7d9fdb06db00a24abad92504267f8d42eb22b246';
+String _$soldierControllerHash() => r'5bcd86ea7e3daca8fc1d209b14be55d2e03708d3';
 
 abstract class _$SoldierController extends $AsyncNotifier<SoldierUIState> {
   FutureOr<SoldierUIState> build();

@@ -9,7 +9,7 @@ void main() async {
 
   final flavorConfig = FlavorConfig()
     ..title = 'Boiler Plate'
-    ..baseUrl = 'https://swapi.info'
+    ..baseUrl = 'https://digimon-api.vercel.app'
     ..env = KeyConstant.envStagingFile
     ..flavor = Flavor.staging;
 

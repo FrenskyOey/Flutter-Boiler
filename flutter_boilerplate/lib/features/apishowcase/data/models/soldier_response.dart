@@ -8,16 +8,18 @@ part 'soldier_response.g.dart';
 abstract class SoldierResponse with _$SoldierResponse {
   const SoldierResponse._();
 
-  // put DTO Function in here
-  const factory SoldierResponse({@Default('') String name}) = _SoldierResponse;
+  const factory SoldierResponse({
+    @Default('') String name,
+    @Default('') String img,
+  }) = _SoldierResponse;
 
   // converting UserDTO object to User entity
   Soldier toDomain() {
-    return Soldier(name: name, avatar: "");
+    return Soldier(name: name, avatar: img);
   }
 
   factory SoldierResponse.fromDomain(Soldier soldier) {
-    return SoldierResponse(name: soldier.name);
+    return SoldierResponse(name: soldier.name, img: soldier.avatar);
   }
 
   factory SoldierResponse.fromJson(Map<String, dynamic> json) =>

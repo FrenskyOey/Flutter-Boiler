@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/extension/src/text_style_extension.dart';
-import 'package:flutter_boilerplate/core/themes/app_color.dart';
 
 enum AvatarSize { small, medium, large }
 

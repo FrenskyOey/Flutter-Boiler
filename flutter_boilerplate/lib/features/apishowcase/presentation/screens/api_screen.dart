@@ -88,7 +88,7 @@ class DemoApiScreen extends HookConsumerWidget {
           data: (data) {
             final soldierData = data.data;
             if (soldierData.isEmpty) {
-              return EmptyStateWidget();
+              return const EmptyStateWidget();
             }
             return Column(
               children: [

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SoldierResponse {
 
- String get name;
+ String get name; String get img;
 /// Create a copy of SoldierResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SoldierResponseCopyWith<SoldierResponse> get copyWith => _$SoldierResponseCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SoldierResponse&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SoldierResponse&&(identical(other.name, name) || other.name == name)&&(identical(other.img, img) || other.img == img));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode => Object.hash(runtimeType,name,img);
 
 @override
 String toString() {
-  return 'SoldierResponse(name: $name)';
+  return 'SoldierResponse(name: $name, img: $img)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SoldierResponseCopyWith<$Res>  {
   factory $SoldierResponseCopyWith(SoldierResponse value, $Res Function(SoldierResponse) _then) = _$SoldierResponseCopyWithImpl;
 @useResult
 $Res call({
- String name
+ String name, String img
 });
 
 
@@ -65,9 +65,10 @@ class _$SoldierResponseCopyWithImpl<$Res>
 
 /// Create a copy of SoldierResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? img = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,img: null == img ? _self.img : img // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -153,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String img)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SoldierResponse() when $default != null:
-return $default(_that.name);case _:
+return $default(_that.name,_that.img);case _:
   return orElse();
 
 }
@@ -174,10 +175,10 @@ return $default(_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String img)  $default,) {final _that = this;
 switch (_that) {
 case _SoldierResponse():
-return $default(_that.name);case _:
+return $default(_that.name,_that.img);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +195,10 @@ return $default(_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String img)?  $default,) {final _that = this;
 switch (_that) {
 case _SoldierResponse() when $default != null:
-return $default(_that.name);case _:
+return $default(_that.name,_that.img);case _:
   return null;
 
 }
@@ -209,10 +210,11 @@ return $default(_that.name);case _:
 @JsonSerializable()
 
 class _SoldierResponse extends SoldierResponse {
-  const _SoldierResponse({this.name = ''}): super._();
+  const _SoldierResponse({this.name = '', this.img = ''}): super._();
   factory _SoldierResponse.fromJson(Map<String, dynamic> json) => _$SoldierResponseFromJson(json);
 
 @override@JsonKey() final  String name;
+@override@JsonKey() final  String img;
 
 /// Create a copy of SoldierResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SoldierResponse&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SoldierResponse&&(identical(other.name, name) || other.name == name)&&(identical(other.img, img) || other.img == img));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode => Object.hash(runtimeType,name,img);
 
 @override
 String toString() {
-  return 'SoldierResponse(name: $name)';
+  return 'SoldierResponse(name: $name, img: $img)';
 }
 
 
@@ -247,7 +249,7 @@ abstract mixin class _$SoldierResponseCopyWith<$Res> implements $SoldierResponse
   factory _$SoldierResponseCopyWith(_SoldierResponse value, $Res Function(_SoldierResponse) _then) = __$SoldierResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String name
+ String name, String img
 });
 
 
@@ -264,9 +266,10 @@ class __$SoldierResponseCopyWithImpl<$Res>
 
 /// Create a copy of SoldierResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? img = null,}) {
   return _then(_SoldierResponse(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,img: null == img ? _self.img : img // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

@@ -55,7 +55,7 @@ class DesignScreen extends HookConsumerWidget {
   }
 
   Widget _colorSwatch(BuildContext context, Color color, String type) {
-    return Container(
+    return SizedBox(
       width: 78,
       child: Column(
         children: [

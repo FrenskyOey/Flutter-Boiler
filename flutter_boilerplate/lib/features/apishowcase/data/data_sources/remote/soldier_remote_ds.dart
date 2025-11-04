@@ -9,7 +9,7 @@ class SoldierRemoteDataSourceImpl implements SoldierRemoteDataSource {
   @override
   Future<List<SoldierResponse>> getSoldier(int page) async {
      try {
-      final response = await dio.get('/api/people');
+      final response = await dio.get('/api/digimon/level/champion');
       // 2. Safely check if the response data is a List
       final List<dynamic> rawList = response.data;
       // 3. Map each item in the list to a SoldierResponse object
