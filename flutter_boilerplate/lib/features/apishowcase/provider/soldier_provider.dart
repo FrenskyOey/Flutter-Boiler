@@ -16,6 +16,6 @@ Future<SoldierRemoteDataSource> soldierRemoteDataSource(Ref ref) async {
 
 @riverpod
 Future<SoldierRepository> soldierRepository(Ref ref) async {
-  final remoteRepo = await ref.read(soldierRemoteDataSourceProvider.future);
+  final remoteRepo = await ref.watch(soldierRemoteDataSourceProvider.future);
   return SoldieRepositoryImp(remoteDataSource: remoteRepo);
 }

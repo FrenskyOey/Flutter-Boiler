@@ -34,7 +34,6 @@ class DemoApiScreen extends HookConsumerWidget {
       if (next == null) {
         return;
       }
-
       next.maybeWhen(
         toastError: (message) {
           SnackBarHelper.showError(context, message);
@@ -43,10 +42,7 @@ class DemoApiScreen extends HookConsumerWidget {
           SnackBarHelper.showSuccess(context, message);
         },
         openUser: (data) {
-          SnackBarHelper.showWarning(
-            context,
-            "${data.name} detail will be open later",
-          );
+          SnackBarHelper.showWarning(context, "Coming Soon ...[${data.name}]");
         },
         orElse: () {},
       );
@@ -77,7 +73,9 @@ class DemoApiScreen extends HookConsumerWidget {
 
     useEffect(() {
       scrollController.addListener(onScroll);
-      Future.delayed(Duration.zero, loadNextPage);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        loadNextPage();
+      });
       return () => scrollController.removeListener(onScroll);
     }, []);
 
@@ -86,7 +84,12 @@ class DemoApiScreen extends HookConsumerWidget {
       body: Container(
         child: apiState.maybeWhen(
           data: (data) {
+            if (data == null) {
+              return _buildProgressBar();
+            }
+
             final soldierData = data.data;
+
             if (soldierData.isEmpty) {
               return const EmptyStateWidget();
             }

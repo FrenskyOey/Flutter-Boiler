@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/extension/index.dart';
-import 'package:flutter_boilerplate/core/helpers/animated_component.dart';
 import 'package:flutter_boilerplate/core/themes/dimens_constant.dart';
 
 /// Defines the possible states (types) for the custom SnackBar.

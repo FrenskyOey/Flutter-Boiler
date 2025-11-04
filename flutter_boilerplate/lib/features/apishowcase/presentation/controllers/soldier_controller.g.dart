@@ -13,7 +13,7 @@ part of 'soldier_controller.dart';
 const soldierControllerProvider = SoldierControllerProvider._();
 
 final class SoldierControllerProvider
-    extends $AsyncNotifierProvider<SoldierController, SoldierUIState> {
+    extends $AsyncNotifierProvider<SoldierController, SoldierUIState?> {
   const SoldierControllerProvider._()
     : super(
         from: null,
@@ -33,20 +33,20 @@ final class SoldierControllerProvider
   SoldierController create() => SoldierController();
 }
 
-String _$soldierControllerHash() => r'5bcd86ea7e3daca8fc1d209b14be55d2e03708d3';
+String _$soldierControllerHash() => r'f59ad2082ff640c404f6503eafcfe5ee2aae469f';
 
-abstract class _$SoldierController extends $AsyncNotifier<SoldierUIState> {
-  FutureOr<SoldierUIState> build();
+abstract class _$SoldierController extends $AsyncNotifier<SoldierUIState?> {
+  FutureOr<SoldierUIState?> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<SoldierUIState>, SoldierUIState>;
+    final ref = this.ref as $Ref<AsyncValue<SoldierUIState?>, SoldierUIState?>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<SoldierUIState>, SoldierUIState>,
-              AsyncValue<SoldierUIState>,
+              AnyNotifier<AsyncValue<SoldierUIState?>, SoldierUIState?>,
+              AsyncValue<SoldierUIState?>,
               Object?,
               Object?
             >;

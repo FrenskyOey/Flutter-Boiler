@@ -6,7 +6,7 @@ class SoldierUIState {
 
   SoldierUIState({required this.data, required this.hideLoading});
 
-  SoldierUIState copyWith({List<Soldier>? data, bool? hideLoading}) {
+  SoldierUIState copyWith({bool? hideLoading, List<Soldier>? data}) {
     return SoldierUIState(
       data: data ?? this.data,
       hideLoading: hideLoading ?? this.hideLoading,

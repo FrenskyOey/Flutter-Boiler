@@ -90,4 +90,4 @@ final class SoldierRepositoryProvider
   }
 }
 
-String _$soldierRepositoryHash() => r'9b8dfb58df19393c2d021784c033f2332fee0f09';
+String _$soldierRepositoryHash() => r'e10ca614d6b84e1e1af6b32db9613872ef809533';

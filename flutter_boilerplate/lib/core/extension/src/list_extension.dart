@@ -27,7 +27,7 @@ extension IterableUtilityExtensions<T> on Iterable<T> {
     required Widget Function(T item) builder,
   }) {
     final list = <Widget>[];
-    final items = this.toList();
+    final items = toList();
 
     for (int i = 0; i < items.length; i++) {
       list.add(builder(items[i]));

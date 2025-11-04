@@ -167,7 +167,7 @@ class DesignScreen extends HookConsumerWidget {
     textFieldController2.text = "testing";
     final formKey = useMemoized(() => GlobalKey<FormState>());
 
-    String? _validateString(String? value) {
+    String? validateString(String? value) {
       if (value == null || value.isEmpty) {
         return 'String is required';
       }
@@ -209,7 +209,7 @@ class DesignScreen extends HookConsumerWidget {
                     ),
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.done,
-                    validator: _validateString,
+                    validator: validateString,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                   Dimens.lg.space,
@@ -222,7 +222,7 @@ class DesignScreen extends HookConsumerWidget {
                     ),
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.done,
-                    validator: _validateString,
+                    validator: validateString,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                 ],

@@ -17,14 +17,9 @@ class SoldieRepositoryImp implements SoldierRepository {
     try {
       await Future.delayed(const Duration(seconds: 2));
       final responseSoldier = await remoteDataSource.getSoldier(page);
-      int avatarIndexes = currentSize;
       final List<Soldier> result = [];
       for (final datas in responseSoldier) {
-        /*final entity = datas.toDomain().copyWith(
-          avatar: "https://randomuser.me/api/portraits/men/$avatarIndexes.jpg",
-        );*/
         final entity = datas.toDomain();
-        avatarIndexes = avatarIndexes + 1;
         result.add(entity);
       }
       return Right(result);
