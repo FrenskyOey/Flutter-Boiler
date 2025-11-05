@@ -1,5 +1,7 @@
 # Flutter Boilerplate Project
 
+<img width="1970" height="560" alt="readme_phone_mockups" src="https://github.com/user-attachments/assets/9124227d-b2e7-4243-9c6d-689f7ce6eb41" />
+
 A well-structured Flutter boilerplate project with pre-configured routing, theming, error handling, logging, and common utilities.
 
 ## Project Structure
