@@ -7,6 +7,7 @@ import 'package:flutter_boilerplate/features/apishowcase/presentation/screens/ap
 import 'package:flutter_boilerplate/features/demo/presentation/screen/design_screen.dart';
 import 'package:flutter_boilerplate/features/demo/presentation/screen/helper_screen.dart';
 import 'package:flutter_boilerplate/features/demo/presentation/screen/intro_screen.dart';
+import 'package:flutter_boilerplate/features/demo/presentation/screen/widget_screen.dart';
 import 'package:flutter_boilerplate/features/not_found_screen.dart';
 import 'package:flutter_boilerplate/features/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,6 +49,11 @@ final routeProvider = Provider((ref) {
         name: RouteNames.helper,
         path: "/helper",
         builder: (context, state) => const HelperScreen(),
+      ),
+      GoRoute(
+        name: RouteNames.widget,
+        path: "/widget",
+        builder: (context, state) => const WidgetScreen(),
       ),
       GoRoute(
         name: RouteNames.apiDemo,

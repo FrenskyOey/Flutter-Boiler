@@ -15,14 +15,14 @@ class IntroScreen extends StatelessWidget {
       subtitle: 'Demonstrate theming, and App system design',
     ),
     ShowcaseItem(
-      icon: Icons.developer_mode,
-      title: 'Helper Demo',
-      subtitle: 'Demonstrate snackbar, dialog, and toast mecanism',
+      icon: Icons.widgets,
+      title: 'Widget Demo',
+      subtitle: 'Demonstrate custom widget component',
     ),
     ShowcaseItem(
       icon: Icons.developer_mode,
-      title: 'Widget Demo',
-      subtitle: 'Demonstrate custom widget component',
+      title: 'Helper Demo',
+      subtitle: 'Demonstrate snackbar, dialog, and toast mecanism',
     ),
     ShowcaseItem(
       icon: Icons.toys,
@@ -39,11 +39,11 @@ class IntroScreen extends StatelessWidget {
         }
       case 1:
         {
-          context.pushNamed(RouteNames.helper);
+          context.pushNamed(RouteNames.widget);
         }
       case 2:
         {
-          SnackBarHelper.showError(context, "Feature is Not Ready Yet");
+          context.pushNamed(RouteNames.helper);
         }
       case 3:
         {

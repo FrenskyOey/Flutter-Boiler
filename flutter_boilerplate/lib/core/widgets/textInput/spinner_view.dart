@@ -58,6 +58,7 @@ class SpinnerFormField extends HookWidget {
         }
         return null;
       },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       onTap: openBottomSheet,
     );
   }
