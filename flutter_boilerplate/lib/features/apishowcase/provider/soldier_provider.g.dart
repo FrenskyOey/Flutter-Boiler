@@ -15,20 +15,18 @@ const soldierRemoteDataSourceProvider = SoldierRemoteDataSourceProvider._();
 final class SoldierRemoteDataSourceProvider
     extends
         $FunctionalProvider<
-          AsyncValue<SoldierRemoteDataSource>,
           SoldierRemoteDataSource,
-          FutureOr<SoldierRemoteDataSource>
+          SoldierRemoteDataSource,
+          SoldierRemoteDataSource
         >
-    with
-        $FutureModifier<SoldierRemoteDataSource>,
-        $FutureProvider<SoldierRemoteDataSource> {
+    with $Provider<SoldierRemoteDataSource> {
   const SoldierRemoteDataSourceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'soldierRemoteDataSourceProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -38,18 +36,26 @@ final class SoldierRemoteDataSourceProvider
 
   @$internal
   @override
-  $FutureProviderElement<SoldierRemoteDataSource> $createElement(
+  $ProviderElement<SoldierRemoteDataSource> $createElement(
     $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  ) => $ProviderElement(pointer);
 
   @override
-  FutureOr<SoldierRemoteDataSource> create(Ref ref) {
+  SoldierRemoteDataSource create(Ref ref) {
     return soldierRemoteDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SoldierRemoteDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SoldierRemoteDataSource>(value),
+    );
   }
 }
 
 String _$soldierRemoteDataSourceHash() =>
-    r'd7926df6dd8434b2da7cfaa8e2f9969fd8b96724';
+    r'9d5efd4c1cb6ae2d99bde85ce4bc0006b1a47e02';
 
 @ProviderFor(soldierRepository)
 const soldierRepositoryProvider = SoldierRepositoryProvider._();
@@ -57,20 +63,18 @@ const soldierRepositoryProvider = SoldierRepositoryProvider._();
 final class SoldierRepositoryProvider
     extends
         $FunctionalProvider<
-          AsyncValue<SoldierRepository>,
           SoldierRepository,
-          FutureOr<SoldierRepository>
+          SoldierRepository,
+          SoldierRepository
         >
-    with
-        $FutureModifier<SoldierRepository>,
-        $FutureProvider<SoldierRepository> {
+    with $Provider<SoldierRepository> {
   const SoldierRepositoryProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'soldierRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -80,14 +84,22 @@ final class SoldierRepositoryProvider
 
   @$internal
   @override
-  $FutureProviderElement<SoldierRepository> $createElement(
+  $ProviderElement<SoldierRepository> $createElement(
     $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  ) => $ProviderElement(pointer);
 
   @override
-  FutureOr<SoldierRepository> create(Ref ref) {
+  SoldierRepository create(Ref ref) {
     return soldierRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SoldierRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SoldierRepository>(value),
+    );
   }
 }
 
-String _$soldierRepositoryHash() => r'e10ca614d6b84e1e1af6b32db9613872ef809533';
+String _$soldierRepositoryHash() => r'fe2d9b291103d722c5023efbbb8d78e5be1518b1';

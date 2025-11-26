@@ -6,8 +6,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'isar_sample_ds.g.dart';
 
 @riverpod
-Future<EmailLocalDataSource> emailLocalDataSource(Ref ref) async {
-  final isar = await ref.read(isarProvider.future);
+EmailLocalDataSource emailLocalDataSource(Ref ref) {
+  final isar = ref.read(isarClientProvider);
   return EmailLocalDataSourceImpl(isar: isar);
 }
 
@@ -101,5 +101,4 @@ class EmailLocalDataSourceImpl implements EmailLocalDataSource {
       return await _isar.emails.delete(id);
     });
   }
-
 }

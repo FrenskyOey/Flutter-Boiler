@@ -15,13 +15,11 @@ const emailLocalDataSourceProvider = EmailLocalDataSourceProvider._();
 final class EmailLocalDataSourceProvider
     extends
         $FunctionalProvider<
-          AsyncValue<EmailLocalDataSource>,
           EmailLocalDataSource,
-          FutureOr<EmailLocalDataSource>
+          EmailLocalDataSource,
+          EmailLocalDataSource
         >
-    with
-        $FutureModifier<EmailLocalDataSource>,
-        $FutureProvider<EmailLocalDataSource> {
+    with $Provider<EmailLocalDataSource> {
   const EmailLocalDataSourceProvider._()
     : super(
         from: null,
@@ -38,15 +36,23 @@ final class EmailLocalDataSourceProvider
 
   @$internal
   @override
-  $FutureProviderElement<EmailLocalDataSource> $createElement(
+  $ProviderElement<EmailLocalDataSource> $createElement(
     $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  ) => $ProviderElement(pointer);
 
   @override
-  FutureOr<EmailLocalDataSource> create(Ref ref) {
+  EmailLocalDataSource create(Ref ref) {
     return emailLocalDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(EmailLocalDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<EmailLocalDataSource>(value),
+    );
   }
 }
 
 String _$emailLocalDataSourceHash() =>
-    r'155493fae03658b183a10218e0fd7635612c858a';
+    r'670c7c551c03a85155ff91768ee0af400896432d';

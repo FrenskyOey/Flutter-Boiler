@@ -7,15 +7,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'soldier_provider.g.dart';
 
-//  Soldier Depedency
-@riverpod
-Future<SoldierRemoteDataSource> soldierRemoteDataSource(Ref ref) async {
-  final dio = await ref.watch(dioProvider.future);
+@Riverpod(keepAlive: true)
+SoldierRemoteDataSource soldierRemoteDataSource(Ref ref) {
+  final dio = ref.read(dioClientProvider);
   return SoldierRemoteDataSourceImpl(dio: dio);
 }
 
-@riverpod
-Future<SoldierRepository> soldierRepository(Ref ref) async {
-  final remoteRepo = await ref.watch(soldierRemoteDataSourceProvider.future);
+@Riverpod(keepAlive: true)
+SoldierRepository soldierRepository(Ref ref) {
+  final remoteRepo = ref.read(soldierRemoteDataSourceProvider);
   return SoldieRepositoryImp(remoteDataSource: remoteRepo);
 }

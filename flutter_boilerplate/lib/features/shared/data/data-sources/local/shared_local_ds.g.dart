@@ -15,13 +15,11 @@ const shareLocalDataSourceProvider = ShareLocalDataSourceProvider._();
 final class ShareLocalDataSourceProvider
     extends
         $FunctionalProvider<
-          AsyncValue<ShareLocalDataSource>,
           ShareLocalDataSource,
-          FutureOr<ShareLocalDataSource>
+          ShareLocalDataSource,
+          ShareLocalDataSource
         >
-    with
-        $FutureModifier<ShareLocalDataSource>,
-        $FutureProvider<ShareLocalDataSource> {
+    with $Provider<ShareLocalDataSource> {
   const ShareLocalDataSourceProvider._()
     : super(
         from: null,
@@ -38,15 +36,23 @@ final class ShareLocalDataSourceProvider
 
   @$internal
   @override
-  $FutureProviderElement<ShareLocalDataSource> $createElement(
+  $ProviderElement<ShareLocalDataSource> $createElement(
     $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  ) => $ProviderElement(pointer);
 
   @override
-  FutureOr<ShareLocalDataSource> create(Ref ref) {
+  ShareLocalDataSource create(Ref ref) {
     return shareLocalDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShareLocalDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShareLocalDataSource>(value),
+    );
   }
 }
 
 String _$shareLocalDataSourceHash() =>
-    r'01b9cfe6235acd4d96848898d301b6b88c0e5bc2';
+    r'5ebd2019cfffafc13224e172f9e2a854f5215e8e';

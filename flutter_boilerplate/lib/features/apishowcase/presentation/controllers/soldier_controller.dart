@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_boilerplate/core/handlers/log/log_helper.dart';
+import 'package:flutter_boilerplate/core/states/data_state.dart';
 import 'package:flutter_boilerplate/features/apishowcase/domain/models/soldier.dart';
-import 'package:flutter_boilerplate/features/apishowcase/presentation/controllers/soldier_event.dart';
+import 'package:flutter_boilerplate/features/apishowcase/domain/repositories/soldier_repository.dart';
+import 'package:flutter_boilerplate/features/apishowcase/presentation/controllers/state/soldier_event_state.dart';
 import 'package:flutter_boilerplate/features/apishowcase/presentation/controllers/state/soldier_ui_state.dart';
 import 'package:flutter_boilerplate/features/apishowcase/provider/soldier_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,22 +17,23 @@ class SoldierController extends _$SoldierController {
   int _currentPage = 0;
   bool _isFetching = false;
   bool _hasMoreData = true;
+  late SoldierRepository _repo;
+
+  final _eventController = StreamController<SoldierEventState>.broadcast();
 
   @override
-  Future<SoldierUIState?> build() async {
-    /*ref.onDispose(() {
-      LogHelper.error('SoldierController disposed');
+  DataState<SoldierUIState> build() {
+    _repo = ref.read(soldierRepositoryProvider);
+
+    ref.onDispose(() {
+      _eventController.close();
     });
 
-    ref.onCancel(() {
-      LogHelper.error('SoldierController canceled');
-    });
+    return Initial();
+  }
 
-    ref.onResume(() {
-      LogHelper.error('SoldierController resumed');
-    });
-    */
-    return null;
+  Stream<SoldierEventState> getEventStream() {
+    return _eventController.stream;
   }
 
   Future<void> loadNextPage() async {
@@ -44,34 +47,31 @@ class SoldierController extends _$SoldierController {
     _isFetching = true;
 
     if (_soldiers.isEmpty) {
-      state = AsyncValue.loading();
-    } else {
-      final currentData = state.value;
-      if (currentData != null) {
-        state = AsyncValue.data(currentData.copyWith(hideLoading: false));
-      }
+      state = Loading();
+    } else if (state is Success) {
+      final currentData = state as Success;
+      final newData = currentData.data.copyWith(hideLoading: false);
+      state = Success(newData);
     }
     _loadPage();
   }
 
   Future<void> _loadPage() async {
     final nextPage = _currentPage + 1;
-    final repository = await ref.read(soldierRepositoryProvider.future);
-    final result = await repository.getSoldier(nextPage, _soldiers.length);
+    final result = await _repo.getSoldier(nextPage, _soldiers.length);
 
     result.fold(
       (error) {
         _isFetching = false;
         LogHelper.error(error);
 
-        if (_soldiers.isEmpty) {
-          state = AsyncValue.error(error, StackTrace.current);
+        if (state is Success) {
+          _eventController.add(SoldierEventState.toastError(error));
+          final currentData = state as Success;
+          final newData = currentData.data.copyWith(hideLoading: true);
+          state = Success(newData);
         } else {
-          ref.read(soldierEventProvider.notifier).toastError(error);
-          final currentData = state.value;
-          if (currentData != null) {
-            state = AsyncValue.data(currentData.copyWith(hideLoading: true));
-          }
+          state = Error(error);
         }
         return;
       },
@@ -82,26 +82,29 @@ class SoldierController extends _$SoldierController {
           LogHelper.debug(
             'No more data to load. Total soldiers: ${_soldiers.length}',
           );
-          state = AsyncValue.data(
-            SoldierUIState(data: _soldiers, hideLoading: true),
-          );
+
+          if (state is Success) {
+            final currentData = state as Success;
+            final newData = currentData.data.copyWith(hideLoading: true);
+            state = Success(newData);
+          }
           return;
         }
+
         _currentPage = nextPage;
         _soldiers.addAll(data);
 
-        state = AsyncValue.data(
-          SoldierUIState(data: _soldiers, hideLoading: true),
+        state = Success(SoldierUIState(data: _soldiers, hideLoading: true));
+
+        _eventController.add(
+          SoldierEventState.toastSuccess("Data loaded : ${data.length}"),
         );
-        ref
-            .read(soldierEventProvider.notifier)
-            .toastSuccess("Data loaded : ${data.length}");
         return;
       },
     );
   }
 
   void openDetailPage(Soldier soldiers) {
-    ref.read(soldierEventProvider.notifier).opeDetailPage(soldiers);
+    _eventController.add(SoldierEventState.openUser(soldiers));
   }
 }

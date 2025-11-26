@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/core/extension/src/text_style_extension.dart';
 
-enum AvatarSize { small, medium, large }
+enum AvatarSize { small, medium, large, xlarge }
 
 /// A customizable avatar widget that displays a user's profile image from a URL,
 /// or a fallback icon, or a text initial with a dynamically colored background.
@@ -28,6 +28,8 @@ class AvatarImage extends StatelessWidget {
         return 24.0; // 48x48 total size
       case AvatarSize.large:
         return 40.0; // 80x80 total size
+      case AvatarSize.xlarge:
+        return 56.0;
     }
   }
 
@@ -84,6 +86,8 @@ class AvatarImage extends StatelessWidget {
       childWidget = Image.network(
         src!,
         fit: BoxFit.cover,
+        width: currentRadius * 2,
+        height: currentRadius * 2,
         errorBuilder: (context, error, stackTrace) {
           return Icon(Icons.person, color: Colors.white, size: currentRadius);
         },

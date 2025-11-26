@@ -2,9 +2,9 @@ import 'package:flutter_boilerplate/features/apishowcase/domain/models/soldier.d
 
 class SoldierUIState {
   final List<Soldier> data;
-  final bool? hideLoading;
+  final bool hideLoading;
 
-  SoldierUIState({required this.data, required this.hideLoading});
+  const SoldierUIState({this.data = const [], this.hideLoading = false});
 
   SoldierUIState copyWith({bool? hideLoading, List<Soldier>? data}) {
     return SoldierUIState(
